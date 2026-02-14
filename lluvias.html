@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín</title>
+    <link rel="stylesheet" href="lluvia2.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>¡Atrapa lo que me gusta!</h1>
+
+    <div class="game">
+      <div id="player">💗</div>
+    </div>
+
+    <div class="contador">
+      Buenas: <span id="buenas">0</span> | Malas:
+      <span id="malas">0</span>
+    </div>
+
+    <div id="mensajeFinal" class="mensaje">
+      <h2 id="textoFinal"></h2>
+      <button id="btnFinal"></button>
+    </div>
+
+    <script>
+      const cosasBuenas = ["💃", "🦐", "🍊", "🐱", "🍫"];
+      const cosasMalas = ["🕊️", "🫒", "🥩", "🐟", "🐹"];
+
+      const game = document.querySelector(".game");
+      const player = document.getElementById("player");
+
+      let buenas = 0;
+      let malas = 0;
+      let juegoActivo = true;
+
+      function crearObjeto() {
+        if (!juegoActivo) return;
+
+        const objeto = document.createElement("div");
+        objeto.classList.add("objeto");
+
+        const esBueno = Math.random() < 0.5;
+
+        if (esBueno) {
+          objeto.textContent =
+            cosasBuenas[Math.floor(Math.random() * cosasBuenas.length)];
+          objeto.classList.add("bueno");
+        } else {
+          objeto.textContent =
+            cosasMalas[Math.floor(Math.random() * cosasMalas.length)];
+          objeto.classList.add("malo");
+        }
+
+        objeto.style.left = Math.random() * 85 + "%";
+        game.appendChild(objeto);
+
+        let posicion = 0;
+
+        const caer = setInterval(() => {
+          if (!juegoActivo) {
+            clearInterval(caer);
+            return;
+          }
+
+          posicion += 4;
+          objeto.style.top = posicion + "px";
+
+          // Detectar colisión
+          if (
+            posicion > 350 &&
+            objeto.offsetLeft < player.offsetLeft + 100 &&
+            objeto.offsetLeft + 60 > player.offsetLeft
+          ) {
+            if (objeto.classList.contains("bueno")) {
+              buenas++;
+              document.getElementById("buenas").textContent = buenas;
+            } else {
+              malas++;
+              document.getElementById("malas").textContent = malas;
+            }
+
+            objeto.remove();
+            clearInterval(caer);
+            verificarFin();
+          }
+
+          if (posicion > 400) {
+            objeto.remove();
+            clearInterval(caer);
+          }
+        }, 30);
+      }
+
+      function verificarFin() {
+        if (buenas >= 10) {
+          terminarJuego("🎉 LO LOGRASTE 💖", "Vamos al menú", "pant3.html");
+        }
+
+        if (malas >= 10) {
+          terminarJuego("💔 FALLASTE ", "Segunda oportunidad", "");
+        }
+      }
+
+      function terminarJuego(texto, botonTexto, link) {
+        juegoActivo = false;
+
+        document.getElementById("mensajeFinal").style.display = "block";
+        document.getElementById("textoFinal").textContent = texto;
+
+        const btn = document.getElementById("btnFinal");
+        btn.textContent = botonTexto;
+
+        if (link !== "") {
+          btn.onclick = () => (window.location.href = link);
+        } else {
+          btn.onclick = () => location.reload();
+        }
+      }
+
+      setInterval(crearObjeto, 800);
+
+      // mover jugador
+      document.addEventListener("mousemove", (e) => {
+        player.style.left = e.pageX - 50 + "px";
+      });
+    </script>
+  </body>
+</html>

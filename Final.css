@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: white;
+  font-family: "Press Start 2P", cursive;
+}
+.screen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Marco rojo grande */
+.pixel-frame {
+  width: 100%;
+  height: 100vh;
+  border: 20px solid red;
+  background: white;
+  position: relative;
+  text-align: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+/* Borde estilo ticket */
+.pixel-frame::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 15px dashed red;
+  pointer-events: none;
+}
+
+.title-box {
+  font-size: 22px;
+  color: rgb(231, 5, 5);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* espacio entre corazón y texto */
+}
+
+.heart-side {
+  font-size: 20px;
+}
+
+/* 🔥 AQUÍ ESTÁ LA DIFERENCIA */
+.photo-frame {
+  width: 50%; /* más pequeña */
+  max-width: 350px; /* tamaño máximo */
+  margin: 20px auto; /* centrado */
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Imagen */
+.photo-frame img {
+  width: 98%;
+  height: auto;
+  display: block;
+}
+.photo-frame {
+  width: 90%;
+}

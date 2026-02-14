@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Feliz San Valentín</title>
+    <link rel="stylesheet" href="emparejar.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="screen">
+      <div class="pixel-frame">
+        <h1>Empareja las fotos</h1>
+        <img class="heart left" src="imgs/heart.webp" alt="heart" />
+        <img class="heart right" src="imgs/heart.webp" alt="heart" />
+
+        <div class="tablero">
+          <!-- PAREJA 1 A1-V1-->
+          <div class="carta" data-id="1">
+            <img src="Abu/A1.png" />
+          </div>
+
+          <div class="carta" data-id="2">
+            <img src="Abu/A2.png" />
+          </div>
+
+          <div class="carta" data-id="1">
+            <img src="Abu/V1.png" />
+          </div>
+
+          <!-- PAREJA 2 A2-V2-->
+
+          <div class="carta" data-id="2">
+            <img src="Abu/V2.png" />
+          </div>
+
+          <!-- PAREJA 3 A3-V3-->
+          <div class="carta" data-id="3">
+            <img src="Abu/A3.png" />
+          </div>
+
+          <div class="carta" data-id="3">
+            <img src="Abu/foto1.jpg" />
+          </div>
+
+          <div class="carta" data-id="3">
+            <img src="Abu/V3.png" />
+          </div>
+
+          <!-- PAREJA 4 FOTO1-->
+          <div class="carta" data-id="3">
+            <img src="Abu/foto1.jpg" />
+          </div>
+        </div>
+
+        <!-- MENSAJE FINAL -->
+        <div id="nivelCompletado" class="nivel-final">
+          <h2>¡Completaste el nivel!</h2>
+          <a href="pant3.html" class="btn-siguiente">Volver al menú</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      let primera = null;
+      let segunda = null;
+      let bloqueo = false;
+      let parejasEncontradas = 0;
+      let totalParejas = 4; // CAMBIA según cuántas parejas tengas
+
+      const cartas = document.querySelectorAll(".carta");
+
+      cartas.forEach((carta) => {
+        carta.addEventListener("click", function () {
+          if (bloqueo) return;
+          if (this === primera) return;
+
+          this.classList.add("activa");
+
+          if (!primera) {
+            primera = this;
+            return;
+          }
+
+          segunda = this;
+          bloqueo = true;
+
+          if (primera.dataset.id === segunda.dataset.id) {
+            parejasEncontradas++;
+
+            primera = null;
+            segunda = null;
+            bloqueo = false;
+
+            if (parejasEncontradas === totalParejas) {
+              document.getElementById("nivelCompletado").style.display =
+                "block";
+            }
+          } else {
+            setTimeout(() => {
+              primera.classList.remove("activa");
+              segunda.classList.remove("activa");
+              primera = null;
+              segunda = null;
+              bloqueo = false;
+            }, 800);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz San Valentín</title>
+    <link rel="stylesheet" href="2rompe.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="screen">
+      <div class="pixel-frame">
+        <h1>Arma el rompecabezas</h1>
+        <div class="message">Haz clic en las piezas en orden</div>
+        <div class="puzzle-container">
+          <button class="pieza" onclick="activar(this, 1)">
+            <img src="Piezas/pieza1.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 3)">
+            <img src="Piezas/pieza3.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 2)">
+            <img src="Piezas/pieza2.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 4)">
+            <img src="Piezas/pieza4.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 5)">
+            <img src="Piezas/pieza5.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 8)">
+            <img src="Piezas/pieza8.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 11)">
+            <img src="Piezas/pieza11.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 7)">
+            <img src="Piezas/pieza7.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 9)">
+            <img src="Piezas/pieza9.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 6)">
+            <img src="Piezas/pieza6.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 10)">
+            <img src="Piezas/pieza10.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 12)">
+            <img src="Piezas/pieza12.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 15)">
+            <img src="Piezas/pieza15.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 13)">
+            <img src="Piezas/pieza13.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 14)">
+            <img src="Piezas/pieza14.png" />
+          </button>
+
+          <button class="pieza" onclick="activar(this, 16)">
+            <img src="Piezas/pieza16.png" />
+          </button>
+        </div>
+        <button class="check-btn" onclick="verificar()">Comprobar 💕</button>
+
+        <div id="mensaje"></div>
+
+        <div id="fotoCompleta" style="display: none">
+          <h3>¡Lo lograste!</h3>
+          <img src="Piezas/Foto completo Annie.jpeg" width="250" />
+          <br />
+          <a href="pant3.html" class="btn">Volver al menú</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      let paso = 1; // controla el orden correcto
+
+      function activar(boton, numero) {
+        if (numero === paso) {
+          // Si tocó la pieza correcta en orden
+          boton.classList.add("activa");
+          paso = paso + 1;
+          document.getElementById("mensaje").innerHTML = "¡Bien! Sigue así";
+        } else {
+          // Si se equivocó de orden
+          document.getElementById("mensaje").innerHTML =
+            "Ups! orden incorrecto, vuelve a intentar";
+
+          // Reinicia todo
+          paso = 1;
+          let piezas = document.querySelectorAll(".pieza");
+          piezas.forEach((p) => p.classList.remove("activa"));
+        }
+      }
+
+      function verificar() {
+        if (paso === 17) {
+          document.getElementById("mensaje").innerHTML = "¡Perfecto! :3";
+          document.getElementById("fotoCompleta").style.display = "block";
+        } else {
+          document.getElementById("mensaje").innerHTML =
+            "Aún no está completo >:C";
+        }
+      }
+    </script>
+  </body>
+</html>

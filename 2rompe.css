@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  background: #ff001e;
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140vh;
+}
+
+.screen {
+  background: #ffb6c1;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.pixel-frame {
+  border: 5px solid black;
+  padding: 20px;
+  background: #fff0f5;
+  text-align: center;
+}
+
+h1 {
+  margin: 10px 0;
+  color: red;
+}
+
+.message {
+  font-size: 10px;
+  margin-bottom: 15px;
+}
+
+.puzzle-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 👉 4 por fila */
+  gap: 10px;
+  margin: 20px 0;
+  justify-items: center;
+}
+
+.pieza {
+  background: white;
+  border: 3px solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.pieza img {
+  width: 90px;
+  height: 90px;
+}
+
+.pieza.activa {
+  background: #ffb6c1;
+  transform: scale(1.05);
+}
+
+.start-container {
+  margin-top: 15px;
+}
+
+.btn {
+  text-decoration: none;
+  background: black;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.check-btn {
+  background: red;
+  color: white;
+  border: 3px solid black;
+  padding: 10px;
+  font-family: "Press Start 2P", cursive;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#mensaje {
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+#fotoCompleta {
+  margin-top: 15px;
+}
